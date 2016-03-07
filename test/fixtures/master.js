@@ -7,7 +7,7 @@ csteer({
   exec: join(__dirname, './worker.js'),
   args: [ 3003 ],
   limit: 4,
-  count: 4,
+  instance: 4,
   duration: 60000
 })
 .on('fork', (worker) => {
