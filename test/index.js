@@ -12,6 +12,7 @@ describe('csteer test', () => {
   let listeningCount = 0
   let child
   let cpuNum = cpus().length
+  console.log(`cpuNum: ${cpuNum}`)
 
   before((done) => {
     child = fork(join(__dirname, './fixtures/master.js'))
@@ -58,34 +59,16 @@ describe('csteer test', () => {
 
     function check () {
       count += 1
-      if (count === 4) done()
+      if (count === cpuNum - 1) done()
     }
 
-    request.get('/error')
-      .end((err) => {
-        should.exist(err)
-        check()
-      })
-    request.get('/error')
-      .end((err) => {
-        should.exist(err)
-        check()
-      })
-    request.get('/error')
-      .end((err) => {
-        should.exist(err)
-        check()
-      })
-    request.get('/error')
-      .end((err) => {
-        should.exist(err)
-        check()
-      })
-    request.get('/error')
-      .end((err) => {
-        should.exist(err)
-        check()
-      })
+    for (let i = 0; i < cpuNum + 1; i++) {
+      request.get('/error')
+        .end((err) => {
+          should.exist(err)
+          check()
+        })
+    }
   })
 
   it('should reach refork limit', (done) => {

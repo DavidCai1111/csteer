@@ -1,10 +1,10 @@
 {
   "name": "csteer",
-  "version": "0.0.3",
-  "description": "Genius for handling refork in cluster",
+  "version": "0.0.4",
+  "description": "Handling refork in cluster",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/standard && npm run compile &&./node_modules/.bin/mocha --check-leaks -t 30000 test/index.js",
+    "test": "./node_modules/.bin/standard && npm run compile && ./node_modules/.bin/mocha --check-leaks -t 30000 test/index.js",
     "compile": "rm -rf lib && ./node_modules/.bin/babel src --out-dir lib"
   },
   "repository": {

@@ -1,13 +1,14 @@
 'use strict'
 const join = require('path').join
+const cpus = require('os').cpus
 const log = require('n-log')
 const csteer = require('../../lib')
 
 csteer({
   exec: join(__dirname, './worker.js'),
   args: [ 3003 ],
-  limit: 4,
-  instance: 4,
+  limit: cpus().length !== 1 ? cpus().length - 1 : 1,
+  instance: cpus().length,
   duration: 60000
 })
 .on('fork', (worker) => {
