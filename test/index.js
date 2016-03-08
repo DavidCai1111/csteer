@@ -12,7 +12,6 @@ describe('csteer test', () => {
   let listeningCount = 0
   let child
   let cpuNum = cpus().length
-  console.log(`cpuNum: ${cpuNum}`)
 
   before((done) => {
     child = fork(join(__dirname, './fixtures/master.js'))
