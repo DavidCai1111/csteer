@@ -45,6 +45,8 @@ csteer({
   - limit(Number) - the times `csteer` will refork in `duration`, if it is set to be `null`, then there will be no limit, by default it is `60`
   - duration(Number) - by default it is `60000`
 
+- return - the `cluster` object.
+
 ### Events
 
 #### reachReforkLimit
