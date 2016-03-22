@@ -1,5 +1,6 @@
 'use strict'
 const cluster = require('cluster')
+const {join} = require('path')
 const {cpus} = require('os')
 const log = require('n-log')
 
@@ -17,6 +18,7 @@ module.exports = ({
   if (!cluster.isMaster) return
 
   let settings = {}
+  if (exec && exec[0] !== '/') exec = join(process.cwd(), exec)
   if (exec) settings = {exec, args, slient}
 
   let timeLine = []
